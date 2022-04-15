@@ -1,12 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Account from './components/Account';
+import Columns from './components/Columns';
+import PopUp from './components/PopUp';
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <>
+      <PopUp />
+      <Account />
+      <Columns />
+    </>
   );
 }
 
