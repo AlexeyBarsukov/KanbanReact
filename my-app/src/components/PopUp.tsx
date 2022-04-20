@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 function PopUp() {
-  const [message, setMessage] = useState('');
-  const [show, setShow] = useState(false);
-  const [data, setData] = useState('');
+  const [message, setMessage] = useState<string>('');
+  const [show, setShow] = useState<boolean>(false);
+  const [data, setData] = useState<string>('');
 
 
   function saveChanges() {

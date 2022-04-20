@@ -1,0 +1,26 @@
+
+
+.AddCard{
+  border-radius: 3px;
+  padding: 10px; 
+  background: #ebecf0;
+}
+.AddCard:hover{
+  cursor: pointer;
+  background: rgb(184, 182, 182);
+}
+
+
+.AddCardComment{
+  margin: 10px;
+  background: #fff;
+  box-shadow: 0 1px 0 #091e4240;
+  border-radius:3px;
+}
+
+.AddCardCommentInput{
+  outline: none;
+  background-color: transparent;
+  border: 0px solid;
+  padding: 10px;
+}

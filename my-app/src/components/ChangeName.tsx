@@ -1,8 +1,8 @@
 import { Button, Container, Navbar } from "react-bootstrap";
 
-function Account() {
+function ChangeName() {
   const clearStorage = () => {
-    localStorage.clear();
+    localStorage.removeItem('data')
     window.location.reload();
   };
 
@@ -26,4 +26,4 @@ function Account() {
   )
 }
 
-export default Account;
+export default ChangeName;
