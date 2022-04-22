@@ -1,9 +1,34 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button, CloseButton, Collapse } from 'react-bootstrap';
-import './Styles.css'
+import storeAPI from '../../utils/storeApi';
+import './Styles.css';
 
-function ContainerCard() {
-  const [close, setClose] = useState<boolean>(false)
+// @ts-ignore
+function ContainerCard({ listId, type }) {
+  const [close, setClose] = useState<boolean>(false);
+  const [title, setTitle] = useState<string>('');
+  // @ts-ignore
+  const { addMoreCard, addMoreList } = useContext(storeAPI);
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  }
+  const handleBtnConfirm = () => {
+    if (type === 'card') {
+      addMoreCard(title, listId);
+      localStorage.setItem('title', title)
+      setTitle('')
+      setClose(!close)
+    } else {
+      addMoreList(title)
+      setTitle('')
+      setClose(!close)
+    }
+  }
+
+  const handleBlur = () => {
+    setClose(close)
+  }
+
   return (
     <>
       <Collapse in={close}>
@@ -11,14 +36,19 @@ function ContainerCard() {
 
           <div className='AddCardComment' >
             <input
-              onBlur={() => setClose(false)}
+              // @ts-ignore
+              listId={listId}
+              type={type}
+              onChange={handleOnChange}
+              onBlur={handleBlur}
               className='AddCardCommentInput'
-              placeholder='Введите название карточки'
+              placeholder={type === 'card' ? 'Введите название карточки' : 'Введите название колонки'}
+              value={title}
             />
           </div>
 
           <div>
-            <Button variant="primary" style={{ margin: '10px' }}>Добавить карточку2</Button>
+            <Button onClick={handleBtnConfirm} variant="primary" style={{ margin: '10px' }}>{type === 'card' ? 'Добавить в список' : 'Добавить новую карточку'}</Button>
             <CloseButton onClick={() => setClose(!close)} />
           </div>
         </div>
@@ -28,7 +58,7 @@ function ContainerCard() {
         <div className="AddCard"
           onClick={() => setClose(!close)}
         >
-          + Добавить карточку
+          Добавить карточку1
         </div>
       </Collapse>
     </>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Button, Container, Navbar } from "react-bootstrap";
 
 function ChangeName() {

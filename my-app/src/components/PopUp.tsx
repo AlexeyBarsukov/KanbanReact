@@ -13,7 +13,7 @@ function PopUp() {
       setShow(true);
       setMessage('Невозможно сохранить имя')
     }
-    else if (data.length < 4) {
+    else if (data.length < 3) {
       setMessage('Ваше имя слишком короткое')
     }
     else {

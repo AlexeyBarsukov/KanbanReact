@@ -1,15 +1,24 @@
-import React, { useState } from "react";
-
+import React, { useContext, useState } from "react";
+import data from "../utils/Data";
+import store from '../utils/Data'
+import storeApi from "../utils/storeApi";
 
 // @ts-ignore
-function TitleOne({ title }) {
+function TitleOne({ title, listId, cards }) {
   const [open, setOpen] = useState<boolean>(false);
-  const [newTitle, setNewTitle] = useState<string>('');
+  const [newTitle, setNewTitle] = useState<string>(title);
+  // @ts-ignore
+  const { updateListTitle } = useContext(storeApi);
   console.log(newTitle)
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTitle(e.target.value)
-    localStorage.setItem('input1', newTitle)
 
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if ('card1') {
+      setNewTitle(e.target.value)
+      updateListTitle(newTitle, listId)
+      localStorage.setItem('nameCard', newTitle)
+    } else {
+      console.log('ошибка')
+    }
   };
 
 
@@ -17,10 +26,10 @@ function TitleOne({ title }) {
     <div>
       {open ? (<div>
         <input
-          style={{ outline: 'none', backgroundColor: 'transparent', border: "0px solid", padding: '10px' }}
+          className="DataInput"
           onChange={handleOnChange}
           autoFocus
-          value={title}
+          value={newTitle}
           placeholder='Изменить название'
         />
       </div>) : (
@@ -28,8 +37,8 @@ function TitleOne({ title }) {
           <span
             style={{ padding: '10px' }}
             onClick={() => setOpen(!open)}>
-            {title}
-            {/* {localStorage.getItem('input1') ? localStorage.getItem('input1') : 'TODO'} */}
+            {/* {title} */}
+            {localStorage.getItem('nameCard') ? localStorage.getItem('nameCard') : ''}
           </span>
         </div>
       )}
